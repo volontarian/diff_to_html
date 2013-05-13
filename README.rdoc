@@ -1,0 +1,40 @@
+= diff_to_html
+
+Ruby library to convert unified diffs like you get from SVN and git to HTML
+
+It'a fork of https://github.com/artemv/diff_to_html.rb to use as a dependency in gem specs of other gems through Rubygems.org hosting.
+
+It's furthermore based on code from http://gurge.com/blog/2006/10/03/subversion-diff-viewer-cgi-in-ruby (thanks Adam 
+Doppelt!), adopted lightly to support multifile diffs and to have more familiar output. It definitely have 
+things to improve, so contribution/patches are very welcome.
+
+* install the gem: 
+
+   gem install diff_to_html
+   
+* go to gem's 'examples' dir (it's .../ruby/lib/ruby/gems/1.8/gems/diff_to_html-x.x.x/examples/) and run 'ruby test.rb >out.html' - 
+  this will get diff from sample 'svn diff' and generate out.html. Resulting html is linked to diff.css in 'examples' directory - you'll need
+  to copy it to your project's dir to use it.
+
+* To use in Rails project:
+
+    require 'diff_to_html'
+    diff = `cat #{File.join(File.dirname(__FILE__), 'diff.svn')}`
+    converter = SvnDiffToHtml.new #there's also GitDiffToHtml
+    puts converter.composite_to_html(diff)
+
+* to use in any Ruby program:
+   
+    require 'rubygems'
+    require 'diff_to_html'
+    ...
+  
+== License
+
+diff_to_html is released under the MIT license.
+
+== Authors and credits
+
+Authors::          Artem Vasiliev
+Original code::    Adam Doppelt, http://gurge.com/blog/2006/10/03/subversion-diff-viewer-cgi-in-ruby
+
