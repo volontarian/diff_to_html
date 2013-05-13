@@ -12,15 +12,15 @@ things to improve, so contribution/patches are very welcome.
 
    gem install diff_to_html
    
-* go to gem's 'examples' dir (it's .../ruby/lib/ruby/gems/1.8/gems/diff_to_html-x.x.x/examples/) and run 'ruby test.rb >out.html' - 
+* go to gem's 'examples' dir and run 'ruby test.rb >out.html' - 
   this will get diff from sample 'svn diff' and generate out.html. Resulting html is linked to diff.css in 'examples' directory - you'll need
   to copy it to your project's dir to use it.
 
 * To use in Rails project:
 
     require 'diff_to_html'
-    diff = `cat #{File.join(File.dirname(__FILE__), 'diff.svn')}`
-    converter = SvnDiffToHtml.new #there's also GitDiffToHtml
+    diff = `cat #{File.join(File.dirname(__FILE__), 'diff.git')}`
+    converter = DiffToHtml::GitConverter.new #there's also DiffToHtml::SvnConverter
     puts converter.composite_to_html(diff)
 
 * to use in any Ruby program:
